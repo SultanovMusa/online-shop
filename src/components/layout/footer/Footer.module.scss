@@ -1,0 +1,24 @@
+.footer {
+	background: transparent;
+	backdrop-filter: blur(5px);
+	.content {
+		.cardText {
+			padding-top: 1rem;
+			margin-top: 1rem;
+			display: flex;
+			justify-content: space-around;
+			padding-bottom: 2rem;
+			p {
+				cursor: pointer;
+			}
+			.card {
+				display: flex;
+				gap: 2rem;
+
+				.icon {
+					font-size: 2rem;
+				}
+			}
+		}
+	}
+}
