@@ -34,7 +34,7 @@ namespace PRODUCT {
 		__v: number;
 	}[];
 
-	type PostProductsRequest = {
+	type PostProductRequest = {
 		newData: {
 			productName: string;
 			quantity: number;
@@ -85,6 +85,7 @@ namespace PRODUCT {
   }[]
 
   type PutProductRequest ={
+		_id: string;
     productName: string;
     quantity: number;
     price: number;
