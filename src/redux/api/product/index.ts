@@ -1,4 +1,4 @@
-import { api as index } from "..";
+import { api as index } from '..';
 
 const api = index.injectEndpoints({
 	endpoints: (build) => ({
@@ -7,10 +7,10 @@ const api = index.injectEndpoints({
 			PRODUCT.GetProductsRequest
 		>({
 			query: () => ({
-				url: "/products",
-				method: "GET",
+				url: '/products',
+				method: 'GET'
 			}),
-			providesTags: ["products"],
+			providesTags: ['products']
 		}),
 
 		getProduct: build.query<
@@ -19,9 +19,9 @@ const api = index.injectEndpoints({
 		>({
 			query: (_id) => ({
 				url: `/products/${_id}`,
-				method: "GET",
+				method: 'GET'
 			}),
-			providesTags: ["products"],
+			providesTags: ['products']
 		}),
 
 		postProduct: build.mutation<
@@ -29,11 +29,11 @@ const api = index.injectEndpoints({
 			PRODUCT.PostProductRequest
 		>({
 			query: (newData) => ({
-				url: "/products",
-				method: "POST",
-				body: newData,
+				url: '/products',
+				method: 'POST',
+				body: newData
 			}),
-			invalidatesTags: ["products"],
+			invalidatesTags: ['products']
 		}),
 
 		editProduct: build.mutation<
@@ -44,46 +44,44 @@ const api = index.injectEndpoints({
 				console.log({ _id, updateData }),
 				{
 					url: `/products/${_id}`,
-					method: "PUT",
-					body: updateData,
+					method: 'PUT',
+					body: updateData
 				}
 			),
-			invalidatesTags: ["products"],
+			invalidatesTags: ['products']
 		}),
 
 		deleteProduct: build.mutation<
-			PRODUCT.DeleteProductPesponse,
-			PRODUCT.DeleteProductPequest
+			PRODUCT.DeleteProductResponse,
+			PRODUCT.DeleteProductRequest
 		>({
 			query: (_id) => ({
 				url: `/products/${_id}`,
-				method: "DELETE",
+				method: 'DELETE'
 			}),
-			invalidatesTags: ["products"],
+			invalidatesTags: ['products']
 		}),
 
 		putProduct: build.mutation<
 			PRODUCT.PutProductResponse,
 			PRODUCT.PutProductRequest
 		>({
-			query: ({ productName, price, quantity, photoUrl, _id }) => (
-				// console.log(price, productName, quantity, photoUrl,_id),
+			query: ({productName, price, quantity, photoUrl, _id}) => (
+				// console.log({ _id, newObj }),
 				{
 					url: `/products/${_id}`,
-					method: "PUT",
-					body: { productName, price, quantity, photoUrl },
-				}
-			),
-			invalidatesTags: ["products"],
-		}),
-	}),
+					method: 'PUT',
+					body: {productName, price, quantity, photoUrl}
+				}),
+				invalidatesTags: ['products']
+		})
+	})
 });
-
 export const {
 	useGetProductsQuery,
 	useGetProductQuery,
 	usePostProductMutation,
 	useEditProductMutation,
 	useDeleteProductMutation,
-	usePutProductMutation,
+	usePutProductMutation
 } = api;

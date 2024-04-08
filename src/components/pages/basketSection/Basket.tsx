@@ -1,41 +1,41 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+import scss from "./Baseket.module.scss";
+import { MdExposurePlus1 } from "react-icons/md";
+import { TbExposureMinus1 } from "react-icons/tb";
 
-import scss from './Baseket.module.scss';
+import { useEditProductMutation } from "../../../redux/api/product";
+import { useGetProducBasketQuery } from "../../../redux/api/basket";
 
-// import { MdExposurePlus1 } from 'react-icons/md';
-// import { TbExposureMinus1 } from 'react-icons/tb';
-import { useGetProductBasketQuery } from '../../../redux/api/basket';
-// import { useEditProductMutation } from '../../../redux/api/product';
-
-// type EditProductRequest = {
-// 	_id: string;
-// 	updateData: {
-// 		productName: string;
-// 		price: string;
-// 		quantity: string;
-// 		photoUrl: string;
-// 	};
-// };
+type EditProductRequest = {
+	_id: string;
+	updateData: {
+		productName: string;
+		price: string;
+		quantity: string;
+		photoUrl: string;
+	};
+};
 
 const Basket = () => {
-	const { data: products = [], isLoading } = useGetProductBasketQuery();
-	// const [editProductMutation] = useEditProductMutation();
+	const { data: products = [], isLoading } = useGetProducBasketQuery();
+	const [editProductMutation] = useEditProductMutation();
 
-	// const handleQuantityChange = async (
-	// 	data: EditProductRequest,
-	// 	quantityDelta: number
-	// ) => {
-	// 	// const updatedQuantity = +data.updateData.quantity + quantityDelta;
-	// 	// const updateData = {
-	// 	// 	productName: data.updateData.productName,
-	// 	// 	price: data.updateData.price,
-	// 	// 	quantity: '' + updatedQuantity,
-	// 	// 	photoUrl: data.updateData.photoUrl
-	// 	// };
-	// 	// console.log(quantityDelta);
+	const handleQuantityChange = async (
+		data: EditProductRequest,
+		quantityDelta: number
+	) => {
+		const updatedQuantity = +data.updateData.quantity + quantityDelta;
+		const updateData = {
+			productName: data.updateData.productName,
+			price: data.updateData.price,
+			quantity: "" + updatedQuantity,
+			photoUrl: data.updateData.photoUrl,
+		};
+		console.log(quantityDelta);
 
-	// 	// await editProductMutation({ _id: data._id, updateData });
-    
-	// };
+		await editProductMutation({ _id: data._id, updateData });
+	};
 
 	return (
 		<div className={scss.Basket}>
@@ -46,7 +46,9 @@ const Basket = () => {
 					) : (
 						<div className={scss.products}>
 							<h2 className={scss.text}>Корзина</h2>
-							{products.map((item) =>item.product !== null && (
+							{products.map(
+								(item) =>
+									item.product !== null && (
 										<div className={scss.card} key={item._id}>
 											<div>
 												<img
@@ -61,33 +63,31 @@ const Basket = () => {
 											<div>
 												<p>Цена: {item.product.price}</p>
 											</div>
-											{/* <button
+											<button
 												onClick={() => {
 													handleQuantityChange(
 														{
 															_id: item.product._id,
-															updateData: { ...item.product }
+															updateData: { ...item.product },
 														},
 														1
 													);
-												}}
-											>
+												}}>
 												<MdExposurePlus1 />
-											</button> */}
+											</button>
 
-											{/* <button
+											<button
 												onClick={() => {
 													handleQuantityChange(
 														{
 															_id: item.product._id,
-															updateData: { ...item.product }
+															updateData: { ...item.product },
 														},
 														-1
 													);
-												}}
-											>
+												}}>
 												<TbExposureMinus1 />
-											</button> */}
+											</button>
 										</div>
 									)
 							)}

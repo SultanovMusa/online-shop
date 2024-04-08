@@ -6,11 +6,10 @@ interface ReduxProviderProps {
 	children: ReactNode;
 }
 
-  export const ReduxProvider: FC<ReduxProviderProps> = ({ children }) => {
+export const ReduxProvider: FC<ReduxProviderProps> = ({ children }) => {
 	return (
 		<>
 			<Provider store={store}>{children}</Provider>
 		</>
 	);
 };
-

@@ -1,8 +1,8 @@
-// import Dashboard from "./homeSection/Dashboard";
+import Dashboard from "./homeSection/Dashboard";
 
 const HomePages = () => {
 	return <div>
-		{/* <Dashboard/> */}
+		<Dashboard/>
 	</div>;
 };
 

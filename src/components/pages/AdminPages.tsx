@@ -1,5 +1,9 @@
+import Admin from "./adminSection/Admin";
+
 const AdminPages = () => {
-	return <div>AdminPages</div>;
+	return <div>
+		<Admin/>
+	</div>;
 };
 
 export default AdminPages;

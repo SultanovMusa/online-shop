@@ -1,9 +1,29 @@
-import scss from './Product.module.scss'
+import { useParams } from "react-router-dom";
+import scss from "./Product.module.scss";
+import { useGetProductQuery } from "../../../redux/api/product";
 
 const Product = () => {
-  return (
-    <div className={scss.Product}>Product</div>
-  )
-}
+	const { productId } = useParams();
 
-export default Product
+	const { data } = useGetProductQuery(productId!);
+	return (
+		<section className={scss.Product}>
+			<div className="container">
+				<div className={scss.content}>
+					<h1>{data?.productName}</h1>
+					<img
+						style={{
+							width: "700px",
+						}}
+						src={data?.photoUrl}
+						alt={data?.productName}
+					/>
+					<p>{data?.quantity}</p>
+					<p>{data?.price}</p>
+				</div>
+			</div>
+		</section>
+	);
+};
+
+export default Product;

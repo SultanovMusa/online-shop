@@ -18,7 +18,7 @@ namespace Basket {
 
 	type PostBasketResponse = {
 		message: string;
-		inInBasket: boolean;
+		isInBasket: boolean;
 	};
 	type PostBasketRequest = void;
 }

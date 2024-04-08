@@ -1,0 +1,40 @@
+.Basket {
+	h1 {
+		text-align: center;
+	}
+	.products {
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+		width: 60rem;
+		margin-left: 8rem;
+		margin-bottom: 8rem;
+		color: black;
+		border-radius: 1rem;
+		backdrop-filter: blur(10px);
+		color: white;
+		border: 2px solid white;
+			.text {
+			font-size: 3rem;
+			margin-left: 1rem;
+		}
+		.card {
+			padding: 2rem;
+			display: flex;
+			justify-content: space-around;
+
+			img {
+				object-fit: cover;
+				object-position: center;
+				width: 15rem;
+				border-radius: 1rem;
+				height: 12rem;
+			}
+			button {
+				margin-top: 2rem;
+				color: white;
+				height: 3rem;
+			}
+		}
+	}
+}

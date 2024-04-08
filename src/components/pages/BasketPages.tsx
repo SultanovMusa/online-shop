@@ -1,5 +1,9 @@
+import Basket from "./basketSection/Basket";
+
 const BasketPages = () => {
-	return <div>BasketPages</div>;
+	return <div>
+		<Basket/>
+	</div>;
 };
 
 export default BasketPages;

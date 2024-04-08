@@ -6,8 +6,16 @@ import scss from './Dashboard.module.scss';
 
 import { Link } from 'react-router-dom';
 import Modal from '../../UI/modalka/Modal';
-
+import { HiArchiveBoxXMark } from 'react-icons/hi2';
+import { FiHeart } from 'react-icons/fi';
+import { FcPaid } from 'react-icons/fc';
+import { FcEditImage } from 'react-icons/fc';
+import { FcDoNotInsert } from 'react-icons/fc';
 import { FcDownload } from 'react-icons/fc';
+
+import { usePostProducFavoriteMutation } from '../../../redux/api/fovarite';
+import { usePostProducBasketMutation } from '../../../redux/api/basket';
+import { useDeleteProductMutation, useGetProductsQuery, usePostProductMutation, usePutProductMutation } from '../../../redux/api/product';
 
 const Dashboard = () => {
 	const [productName, setProductName] = useState<string>('');

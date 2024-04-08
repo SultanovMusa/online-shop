@@ -1,8 +1,11 @@
+import Izbran from "./izbranSection/Izbran"
 
 
 const IzbranPages = () => {
 	return (
-		<div>IzbranPages</div>
+		<div>
+			<Izbran/>
+		</div>
 	)
 }
 

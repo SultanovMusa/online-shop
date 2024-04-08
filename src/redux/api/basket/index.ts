@@ -1,37 +1,36 @@
-import {api as index} from '../index'
+import { api as index } from "../index";
 
 const api = index.injectEndpoints({
-  endpoints: (build) => ({
-    getProductBasket: build.query<
-    Basket.GetBasketResponse,
-    Basket.GetBasketRequest
-    >({
-      query: ()=> ({
-        url: '/basket',
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer${localStorage.getItem('tokenBasket')}`
-        }
-      }),
-      providesTags: ['products']
-    }),
+	endpoints: (build) => ({
+		getProducBasket: build.query<
+			Basket.GetBasketResponse,
+			Basket.GetBasketRequest
+		>({
+			query: () => ({
+				url: "/basket",
+				method: "GET",
+				headers: {
+					Authorization: `Bearer${localStorage.getItem("tokenBasket")}`,
+				},
+			}),
+			providesTags: ["products"],
+		}),
 
-    postProducBasket:build.mutation<
-    Basket.PostBasketResponse,
-    Basket.PostBasketRequest
-    >({
-      query: (_id) => ({
-        url: `/basket/${_id}`,
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('tokenBasket')}`
-        }
-      }),
-      invalidatesTags: ['products']
-
-    })
-
-
-  })
-})
-export const {useGetProductBasketQuery, usePostProducBasketMutation} = api;
+		postProducBasket: build.mutation<
+			Basket.PostBasketResponse,
+			Basket.PostBasketRequest
+		>({
+			query: (_id) => ({
+				url: `/basket/${_id}`,
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem("tokenBasket")}`,
+				},
+			}),
+			invalidatesTags: ["products"],
+		}),
+	}),
+});
+export const { 
+	useGetProducBasketQuery, 
+	usePostProducBasketMutation } = api;

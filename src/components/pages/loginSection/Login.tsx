@@ -1,8 +1,7 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
-import scss from './Login.module.scss';
-import { useLoginMutation } from '../../../redux/api/auth';
-
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import scss from "./Login.module.scss";
+import { useLoginMutation } from "../../../redux/api/auth";
 
 interface IFormInput {
 	email: string;
@@ -10,25 +9,29 @@ interface IFormInput {
 }
 
 const Login = () => {
-	const {register,handleSubmit,formState: { errors }} = useForm<IFormInput>();
-	
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<IFormInput>();
+
 	const navigate = useNavigate();
-  const [loginMutation]= useLoginMutation()
+	const [loginMutation] = useLoginMutation();
 
 	const loginPost: SubmitHandler<IFormInput> = async (data) => {
 		try {
 			const response = await loginMutation({
 				email: data.email,
-				password: data.password
+				password: data.password,
 			});
-			if ('data' in response && response.data.token) {
-				localStorage.setItem('auth_token', response.data.token);
-				navigate('/');
+			if ("data" in response && response.data.token) {
+				localStorage.setItem("auth_token", response.data.token);
+				navigate("/");
 			} else {
-				console.error('Login failed:', response);
+				console.error("Login failed:", response);
 			}
 		} catch (error) {
-			console.error('Login error:', error);
+			console.error("Login error:", error);
 		}
 	};
 
@@ -43,21 +46,21 @@ const Login = () => {
 							<input
 								type="text"
 								placeholder="email                                                                      🥷"
-								{...register('email', {
+								{...register("email", {
 									required: true,
-									pattern: /^\S+@\S+$/i
+									pattern: /^\S+@\S+$/i,
 								})}
 							/>
-							<p>{errors.email && 'Please enter a valid email address'}</p>
+							<p>{errors.email && "Please enter a valid email address"}</p>
 							<label htmlFor="password">Password:</label>
 							<input
 								type="password"
 								placeholder="password                                                                🔐"
-								{...register('password', { required: true, minLength: 6 })}
+								{...register("password", { required: true, minLength: 6 })}
 							/>
 							<p>
 								{errors.password &&
-									'Password must be at least 6 characters long'}
+									"Password must be at least 6 characters long"}
 							</p>
 							<button type="submit">Sign In</button>
 						</div>
